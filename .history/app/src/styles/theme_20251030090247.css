@@ -1,0 +1,20 @@
+:root {
+  /* Brand Colors */
+  --color-primary: #FF4F24;
+  --color-secondary: #1E1E1E;
+  --color-background: #FFFFFF;
+  --color-surface: #F8F8F8;
+
+  /* Status */
+  --color-success: #2ECC71;
+  --color-warning: #F1C40F;
+  --color-danger: #E74C3C;
+
+  /* Text */
+  --color-text-dark: #1E1E1E;
+  --color-text-light: #FFFFFF;
+
+  /* Tokens */
+  --radius: 12px;
+  --button-height: 48px;
+}

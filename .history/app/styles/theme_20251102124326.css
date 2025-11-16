@@ -1,0 +1,24 @@
+:root {
+  /* Brand */
+  --color-primary: #FF5722; /* naranja restaurante */
+  --color-primary-light: #FF784E;
+
+  /* Layout */
+  --color-background: #FFFFFF;
+  --color-surface: #F5F5F5;
+  --color-border: #E0E0E0;
+
+  /* Text */
+  --color-text-dark: #212121;
+  --color-text-muted: #616161;
+  --color-text-disabled: #BDBDBD;
+
+  /* Buttons & Controls */
+  --color-plus-button: #FF5722;
+  --color-minus-button: #E0E0E0;
+  --color-minus-icon: #616161;
+
+  /* Design tokens */
+  --radius: 10px;
+  --button-height: 44px;
+}

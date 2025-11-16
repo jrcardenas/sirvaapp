@@ -1,0 +1,25 @@
+// ✅ Mock del menú base
+export const MENU_ITEMS = [
+  { id: "1", name: "Cerveza", price: 2.0 },
+  { id: "2", name: "Coca-Cola", price: 2.2 },
+  { id: "3", name: "Agua", price: 1.5 },
+  { id: "4", name: "Tinto de Verano", price: 2.8 },
+  { id: "5", name: "Café con Leche", price: 1.5 },
+  { id: "6", name: "Patatas Bravas", price: 4.0 },
+  { id: "7", name: "Croquetas", price: 4.5 },
+  { id: "8", name: "Tortilla Española", price: 3.5 },
+  { id: "9", name: "Calamares", price: 5.5 },
+  { id: "10", name: "Jamón Ibérico", price: 9.5 },
+  { id: "11", name: "Gambas al Ajillo", price: 10.5 },
+  { id: "12", name: "Huevos Rotos", price: 8.5 },
+  { id: "19", name: "Pulpo a la Gallega", price: 14.0 },
+  { id: "20", name: "Chistorra", price: 7.0 },
+  { id: "21", name: "Ensaladilla Rusa", price: 6.5 },
+  { id: "13", name: "Bocadillo de Lomo", price: 4.5 },
+  { id: "14", name: "Bocadillo Vegetal", price: 4.2 },
+  { id: "15", name: "Perrito Caliente", price: 4.0 },
+  { id: "16", name: "Tarta de Queso", price: 4.8 },
+  { id: "17", name: "Helado 2 bolas", price: 3.2 },
+  { id: "18", name: "Flan Casero", price: 3.5 },
+];
+

@@ -1,0 +1,107 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useOrderStore, PedidoItem } from "@/store/orderStore";
+
+export default function CocinaPage() {
+  const { mesas, actualizarEstadoItem } = useOrderStore();
+  const [pedidos, setPedidos] = useState<
+    (PedidoItem & { mesaId: string })[]
+  >([]);
+
+  // 🔄 Sincronización en tiempo real
+  useEffect(() => {
+    const pedidosChannel = new BroadcastChannel("pedidos_channel");
+    pedidosChannel.onmessage = (ev) => {
+      if (ev.data?.mesas) {
+        useOrderStore.setState({ mesas: structuredClone(ev.data.mesas) });
+      }
+    };
+    return () => pedidosChannel.close();
+  }, []);
+
+  // 🧮 Derivar los pedidos visibles
+  useEffect(() => {
+    const nuevos: (PedidoItem & { mesaId: string })[] = [];
+    Object.entries(mesas).forEach(([mesaId, mesa]) => {
+      mesa.items.forEach((item) => {
+        if (
+          item.estado === "confirmado" ||
+          item.estado === "enCocina" ||
+          item.estado === "listo"
+        ) {
+          nuevos.push({ ...item, mesaId });
+        }
+      });
+    });
+    setPedidos(nuevos);
+  }, [mesas]);
+
+  return (
+    <main className="min-h-screen bg-background p-5 pt-20 max-w-lg mx-auto">
+      <h1 className="text-3xl font-bold text-center mb-6">
+        👨‍🍳 Panel de Cocina
+      </h1>
+
+      {pedidos.length === 0 && (
+        <p className="text-center text-gray-500">
+          No hay pedidos confirmados aún
+        </p>
+      )}
+
+      <div className="space-y-4">
+        {pedidos.map((p) => (
+          <div
+            key={p.timestamp}
+            className={`p-4 rounded-2xl border shadow bg-white space-y-2 ${
+              p.estado === "enCocina"
+                ? "border-yellow-400 bg-yellow-50"
+                : p.estado === "listo"
+                ? "border-green-500 bg-green-50"
+                : ""
+            }`}
+          >
+            <div className="flex justify-between items-center">
+              <h2 className="text-xl font-bold">{p.name}</h2>
+              <span className="text-sm text-gray-600">Mesa {p.mesaId}</span>
+            </div>
+
+            <p className="text-gray-700 font-semibold">
+              {p.price.toFixed(2)} €
+            </p>
+
+            <div className="flex justify-end gap-2">
+              {p.estado === "confirmado" && (
+                <button
+                  className="bg-yellow-500 text-white px-3 py-1 rounded-xl font-semibold"
+                  onClick={() =>
+                    actualizarEstadoItem(p.mesaId, p.timestamp, "enCocina")
+                  }
+                >
+                  🍳 En cocina
+                </button>
+              )}
+
+              {p.estado === "enCocina" && (
+                <button
+                  className="bg-green-600 text-white px-3 py-1 rounded-xl font-semibold"
+                  onClick={() =>
+                    actualizarEstadoItem(p.mesaId, p.timestamp, "listo")
+                  }
+                >
+                  ✅ Listo
+                </button>
+              )}
+
+              {p.estado === "listo" && (
+                <span className="text-green-700 font-semibold">
+                  ✔️ Listo para servir
+                </span>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </main>
+  );
+}

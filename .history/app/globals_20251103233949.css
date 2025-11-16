@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/* ✅ Variables CSS opcionales */
+:root {
+  --radius: 14px;
+  --button-height: 48px;
+}
+
+/* ✅ Fuente base */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ✅ Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-modal {
+  animation:
+    fadeIn 0.25s ease-out forwards,
+    slideUp 0.25s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out;
+}
+
+.animate-toast {
+  animation: fadeIn 0.3s ease-out;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ✅ Componente botón principal */
+@layer components {
+  .btn-primary {
+    @apply w-full bg-primaryLight text-white font-bold py-3 rounded-2xl shadow-md active:scale-95 transition disabled:bg-disabledBg disabled:text-disabledText disabled:opacity-70 disabled:cursor-not-allowed;
+  }
+}
+

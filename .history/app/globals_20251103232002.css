@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ✅ Variables globales opcionales */
+:root {
+  --radius: 14px;
+  --button-height: 48px;
+}
+
+/* ✅ Fuente base + fondo */
+body {
+  @apply bg-white text-gray-900;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ✅ Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-modal {
+  animation:
+    fadeIn 0.25s ease-out forwards,
+    slideUp 0.25s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out;
+}
+
+.animate-toast {
+  animation: fadeIn 0.3s ease-out;
+}
