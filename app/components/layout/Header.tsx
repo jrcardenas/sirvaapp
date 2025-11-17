@@ -50,7 +50,7 @@ export default function Header() {
     dingRef.current!.volume = 1;
   }, []);
 
-  // ✅ Escucha notificación del camarero ➝ Toast + sonido
+  // ✅ Escucha notificación del camarero → Toast + sonido
   useEffect(() => {
     if (!mesaId) return;
 
@@ -71,7 +71,30 @@ export default function Header() {
   }, [mesaId]);
 
   const navItems: NavItem[] = [
+    // Botón Inicio - siempre visible
     { href: "/", label: "Inicio", icon: "🏠", visible: true },
+
+    // Accesos directos - solo visible cuando NO hay mesaId
+    {
+      href: "/admin/panel",
+      label: "Admin",
+      icon: "👤",
+      visible: !mesaId
+    },
+    {
+      href: "/camarero",
+      label: "Camarero",
+      icon: "👨‍🍳",
+      visible: !mesaId
+    },
+    {
+      href: "/cocina",
+      label: "Cocina",
+      icon: "🍳",
+      visible: !mesaId
+    },
+
+    // Navegación de mesa - solo visible cuando hay mesaId
     {
       href: mesaId ? `/mesa/${mesaId}/menu` : "/",
       label: "Menú",
