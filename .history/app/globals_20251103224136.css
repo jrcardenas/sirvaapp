@@ -1,9 +1,0 @@
-/* ❌ Eliminar esto para que NO se ponga negro */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #121212;
-    --color-surface: #1E1E1E;
-    --color-text-dark: #FFFFFF;
-    --color-border: #333;
-  }
-}
